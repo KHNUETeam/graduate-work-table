@@ -110,14 +110,17 @@ class Student(models.Model):
     surname = models.CharField(max_length=255, blank=True)
     name = models.CharField(max_length=255, blank=True)
     patronymic = models.CharField(max_length=255, blank=True)
-    specialty = models.ForeignKey('Specialty', models.DO_NOTHING, db_column='specialty')
+    specialty = models.ForeignKey('Specialty', models.DO_NOTHING, db_column='specialty', related_name='specialty')
     form = models.ForeignKey('Form', models.DO_NOTHING, db_column='form')
     base = models.ForeignKey('Base', models.DO_NOTHING, db_column='base')
     theme = models.TextField(blank=True)
     leader = models.ForeignKey('Leader', models.DO_NOTHING, blank=True)
     protection_date = models.BigIntegerField(blank=True)
     protection_place = models.ForeignKey('Place', models.DO_NOTHING, db_column='protection_place')
-    protection_specialty = models.ForeignKey('Specialty', models.DO_NOTHING, db_column='protection_specialty')
+    protection_specialty = models.ForeignKey('Specialty', models.DO_NOTHING,
+                                             db_column='protection_specialty',
+                                             related_name='protection_specialty'
+    )
     deducated_cause = models.TextField(blank=True)
     date_release = models.BigIntegerField(blank=True)
 
