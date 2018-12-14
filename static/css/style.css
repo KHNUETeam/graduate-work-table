@@ -17,7 +17,7 @@ body{
 .house img{
     background-size: cover;
     width: 300px;
-    position: static;
+    position: fixed;
     bottom: 0px;
     right: 0px;
 }
