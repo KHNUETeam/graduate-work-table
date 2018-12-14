@@ -1,5 +1,12 @@
-  <form enctype="multipart/form-data" method="post">
+ {% extends 'base.html' %}
+ 
+ {% block content %}
+  
+   <form enctype="multipart/form-data" method="post">
    <p>Завантажити Exel файл</p>
-   <p><input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+   {{ send_form.file }}
+<!--   <p><input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />-->
    <input type="submit" value="Отправить"></p>
   </form>
+  
+{% endblock %}
