@@ -1,3 +1,35 @@
 .search{
     margin: 20px 0px;
 }
+body{
+    background: #2F0F6F !important;
+    color: #fff;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.house{
+    float: right;
+}
+.house img{
+    background-size: cover;
+    width: 300px;
+    position: static;
+    bottom: 0px;
+    right: 0px;
+}
+.hr{
+    background: #fff;
+}
+.logo img{
+    background-size: cover;
+    width: 75px;
+}
+.logo{ 
+    float: left;
+    margin-left: 100px;
+    margin-top: 20px;
+}
