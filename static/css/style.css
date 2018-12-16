@@ -1,9 +1,9 @@
 .search{
-    margin: 20px 0px;
+    padding: 20px 0px;
 }
 body{
-    background: #2F0F6F !important;
-    color: #fff;
+    background: url(../img/d7096ad35844972e015e865729d13235.png) !important;
+    color: #212121;
 }
 .center{
     display: flex;
@@ -11,25 +11,64 @@ body{
     align-items: center;
 
 }
+.table{
+    overflow-x: auto;
+    overflow-y: auto;
+/*
+    width: auto;
+    max-width: 660px;
+*/
+}
+.table-hover{
+    cursor: pointer;
+}
 .house{
+    z-index: 1;
     float: right;
 }
-.house img{
+.table td{
+    background: #fff;
+}
+.bg-light{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.house{
     background-size: cover;
-    width: 300px;
+    background-image: url('../img/house.png');
+    width: 600px;
+    height: 400px;
     position: fixed;
     bottom: 0px;
-    right: 0px;
+    right: -140px;
+    z-index: 1;
 }
 .hr{
     background: #fff;
 }
 .logo img{
-    background-size: cover;
     width: 75px;
+    height: 75px;
 }
-.logo{ 
-    float: left;
-    margin-left: 100px;
-    margin-top: 20px;
+input[type="file"]{
+    background: none;
+    border: none;
+    color: #fff;
+    margin-left: -10px;
+}
+.silver{
+    background: #404040;
+    color: #fff;
+}
+.search{
+    background: #fff;
+    
+}
+.zind{
+    z-index: 99999;
+}
+
+@media (max-width: )
+{
+    
 }

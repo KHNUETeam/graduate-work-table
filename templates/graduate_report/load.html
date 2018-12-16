@@ -3,10 +3,11 @@
  {% block content %}
   
    <form enctype="multipart/form-data" method="post">
+   {% csrf_token %}
    <p>Завантажити Exel файл</p>
    {{ send_form.file }}
 <!--   <p><input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />-->
-   <input type="submit" value="Отправить"></p>
+   <input type="submit" class="btn btn-info" value="Отправить"></p>
   </form>
   
 {% endblock %}
