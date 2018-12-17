@@ -10,6 +10,8 @@ def main(request):
     students = Student.objects.filter(theme__icontains="структур")
 
     if request.method == 'POST':
+        if 'search' in request.POST:
+            search = True
         search_form = SearchForm(request.POST)
         if search_form.is_valid():
             data = search_form.cleaned_data
