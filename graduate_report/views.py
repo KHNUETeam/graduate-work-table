@@ -1,11 +1,37 @@
 from django.shortcuts import render, redirect
 from .controller import ViewController
-from .forms import ImportExelForm
+from .forms import ImportExelForm, SearchForm
+from .models import Student
 import time
+import re
 
 # Create your views here.
 def main(request):
-    return render(request, 'graduate_report/main.html')
+    students = Student.objects.filter(theme__icontains="структур")
+
+    if request.method == 'POST':
+        search_form = SearchForm(request.POST)
+        if search_form.is_valid():
+            data = search_form.cleaned_data
+            print(data)
+
+            students = Student.objects.filter(deleted=0)
+
+            if data['start']:
+                students = students.filter(protection_date=data['start'])
+
+            if data['end']:
+                students = students.filter(protection_date=data['end'])
+
+            if data['phrases'] != '':
+                phrases = re.split(r'\s*,\s*', data['phrases'])
+                for phrase in phrases:
+                    students = students.filter(theme__icontains=phrase)
+    else:
+        search_form = SearchForm()
+        students = Student.objects.filter(deleted=0)
+
+    return render(request, 'graduate_report/main.html', locals())
 
 def load(request):
     view_controller = ViewController()
