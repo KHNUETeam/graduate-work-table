@@ -4,35 +4,32 @@
         <div class="center">
             <div class="col-lg-12">
                 <form action="" method="post" class="search zind">
+                    {% csrf_token %}
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <label for="exampleInputEmail1">Пошук за ключовими словами</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ведіть словосполучення"> </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-12">
-                            <label for="exampleInputEmail1">Або/та</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Слово"> </div>
+                            <label>Пошук за ключовими словами</label>
+                            {{ search_form.phrases }}
+                        </div>
                     </div>
                     <div class="form-group row">
                        <div class="col-lg-12">
-                           <label for="inputPassword3" class="col col-form-label">За період:</label>
+                           <label class="col col-form-label">За період:</label>
                        </div>
                        <div class="col-lg-1">
-                           <label for="inputPassword3" class="col col-form-label">з</label>
+                           <label class="col col-form-label">з</label>
                        </div>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" id="inputEmail3" placeholder=""> 
+                            {{ search_form.start }}
                         </div>
-                        
+
                         <div class="col-lg-2">
-                            <label for="inputPassword3" class="col col-form-label">по</label>
+                            <label class="col col-form-label">по</label>
                         </div>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" placeholder=""> 
+                            {{ search_form.end }}
                         </div>
                         <div class="col-lg-1">
-                            <label for="inputPassword3" class="col col-form-label">рік</label>
+                            <label class="col col-form-label">рік</label>
                         </div>
                     </div>
                     <div class="col">
@@ -53,30 +50,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for student in students %}
                     <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                        <td>{{ student.theme }}</td>
+                        <td>{{ student }}</td>
+                        {% if student.protection_date %}
+                        <td>{{ student.protection_date }}</td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                        <td>{{ student.specialty }}</td>
+                        <td>{{ student.leader }}</td>
+                        <td></td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                        <td>@twitter</td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
             <button class="btn btn-danger">Роздрукувати резутати пошук</button>
