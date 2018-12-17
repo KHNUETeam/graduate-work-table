@@ -1,12 +1,18 @@
  {% extends 'base.html' %}
  
  {% block content %}
-  
-   <form enctype="multipart/form-data" method="post">
-   <p>Завантажити Exel файл</p>
-   {{ send_form.file }}
+             
+              <div class="col-lg-12">
+
+   <form enctype="multipart/form-data" method="post" class="search">
+   {% csrf_token %}
+   <label for="exampleFormControlFile1">Завантажити Exel файл</label>
+       <div class="form-group">
+           {{ send_form.file }}
+       
 <!--   <p><input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />-->
-   <input type="submit" value="Отправить"></p>
+   <input type="submit" class="btn btn-info" value="Отправить">
+   </div>
   </form>
-  
+</div>
 {% endblock %}
