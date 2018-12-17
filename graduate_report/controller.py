@@ -151,7 +151,6 @@ class ViewController:
                         protection_date = None
                 except:
                     try:
-                        datetime(row[11])
                         protection_date = row[11]
                     except:
                         pass
