@@ -14,10 +14,13 @@ class SearchForm(forms.Form):
         'placeholder': 'Введіть словосполучення, слово або частину слова'
     }))
     start = forms.DateTimeField(required=False, widget=forms.DateInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Дата початку'
+        'class': 'form-control tcal',
+        'placeholder': 'Дата початку',
+        'name': 'date'
     }))
     end = forms.DateTimeField(required=False, widget=forms.DateInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Дата закінчення'
+        'class': 'form-control tcal',
+        'placeholder': 'Дата закінчення',
+        'name': 'date'
+
     }))
