@@ -1,52 +1,67 @@
 {% extends 'base.html' %} {% block content %}
-<div class="row center">
+<div class="row">
     <div class="col-lg-12">
-        <div class="center">
-            <div class="col-lg-12">
-                <form action="" method="post" class="search zind">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <div class="col-lg-12">
-                            <label>Пошук за ключовими словами</label>
-                            {{ search_form.phrases }}
+        <div class="col-lg-6">
+            <form action="" method="post" class="zind form">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="img-logo">
+                            <img src="static/img/logo.png">
                         </div>
                     </div>
-                    <div class="form-group row">
-                       <div class="col-lg-12">
-                           <label class="col col-form-label">За період:</label>
-                       </div>
-                       <div class="col-lg-1">
-                           <label class="col col-form-label">з</label>
-                       </div>
-                        <div class="col-lg-4">
-                            {{ search_form.start }}
+                    <div class="col-lg-9">
+                        <div class="title__heder">
+                            <h2>Eлектронний каталог</h2>
+                            <span>тем дисертацій яких захищених здобувачем ХНЕУ ім. С. Кузнеця</span>
                         </div>
+                    </div>
+                </div>
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="col-lg-12">
+                       <div class="row">
+                        <label>Пошук за ключовими словами</label>
+                        {{ search_form.phrases }}
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-12">
+                        <label class="col col-form-label">За період:</label>
+                    </div>
 
-                        <div class="col-lg-2">
-                            <label class="col col-form-label">по</label>
-                        </div>
-                        <div class="col-lg-4">
-                            {{ search_form.end }}
-                        </div>
-                        <div class="col-lg-1">
-                            <label class="col col-form-label">рік</label>
-                        </div>
+
+                    <div class="col-lg-4">
+                        {{ search_form.start }}
                     </div>
-                    <div class="col">
-                        <input type="submit" class="btn btn-primary" value="Шукати"> </div>
-                </form>
-            </div>
+
+                    <div class="col-lg-2">
+                    </div>
+                    <div class="col-lg-4">
+                        {{ search_form.end }}
+                    </div>
+                    <div class="col-lg-1">
+                    </div>
+                </div>
+                <input type="submit" name="search" class="btn" value="Шукати">
+            </form>
         </div>
+
+
+        {% if search %}
         <div class="col-lg-12 zind">
-            <table class="table-hover table-bordered table-striped table zind">
-                <thead class="thead-dark zind">
+            <table class="table table-bordered table-striped  zind table-bordered">
+                <thead class="zind bg-light">
                     <tr>
                         <th scope="col">Тема дисертації</th>
                         <th scope="col">П.І.П. здобувача</th>
-                        <th scope="col">Роки захисту</th>
+                        <th scope="col">Рік захисту</th>
                         <th scope="col">Спеціальність</th>
                         <th scope="col">Науковий керівник</th>
                         <th scope="col">Науковий ступінь, на здобуття якого захищена дисертація</th>
+                        <th scope="col">Місце захисту</th>
+                        <th scope="col">Дата захисту</th>
+                        <th scope="col">Спеціальність по якій відбувся захист</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,12 +76,20 @@
                         {% endif %}
                         <td>{{ student.specialty }}</td>
                         <td>{{ student.leader }}</td>
+                        <td>{{ student.leader }}</td>
+                        <td>{{ student.leader }}</td>
+                        <td>{{ student.leader }}</td>
                         <td></td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <button class="btn btn-danger">Роздрукувати резутати пошук</button>
+            <div class="col-lg-12">
+                <div class="row">
+                    <button type="button" onclick="location.href='/preview'" class="btn">Друк</button>
+                </div>
+            </div>
         </div>
+        {% endif %}
     </div>
 </div> {% endblock %}

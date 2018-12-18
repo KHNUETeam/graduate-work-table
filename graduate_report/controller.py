@@ -3,7 +3,7 @@ import pandas
 from graduate_table.settings import BASE_DIR
 from datetime import datetime
 import os
-from .models import Faculty, Department, Form, Specialty, Base, Place, Cause, Leader, Student
+from .models import Faculty, Department, Form, Specialty, Base, Place, Cause, Degree, Leader, Student
 from datetime import datetime
 import math
 
@@ -43,10 +43,11 @@ class ViewController:
             base = None
             place = None
             cause = None
+            degree = None
             leader = None
             student = None
 
-            print(row[11])
+            print(row[8])
 
             if str.lower(row[5]) == 'о':
                 row[5] = 'очна'
@@ -130,6 +131,19 @@ class ViewController:
                 else:
                     cause = Cause.objects.filter(text=row[1])[0]
 
+            if row[14]:
+                if not Degree.objects.filter(name=row[14]):
+                    print(row[14])
+
+                    degree = Degree(
+                        name=row[14],
+                        deleted=0
+                    )
+                    degree.save()
+
+                else:
+                    degree = Degree.objects.filter(name=row[14])[0]
+
             if row[10]:
                 if not Leader.objects.filter(fullname=row[10]):
                     print(row[10])
@@ -165,9 +179,7 @@ class ViewController:
                     surname=fullname[0],
                     name=fullname[1],
                     patronymic=fullname[2],
-                    theme=row[13],
-                    leader=leader,
-                    date_release=date_release
+                    theme=row[13]
                 ):
                     student = Student(
                         surname=fullname[0],
@@ -177,6 +189,7 @@ class ViewController:
                         form=form,
                         base=base,
                         theme=row[13],
+                        degree=degree,
                         leader=leader,
                         protection_date=protection_date,
                         protection_place=place,

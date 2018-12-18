@@ -6,22 +6,25 @@ import time
 import re
 
 # Create your views here.
-def main(request):
+def main(request, preview=None):
     students = Student.objects.filter(theme__icontains="структур")
 
     if request.method == 'POST':
+        if 'search' in request.POST:
+            search = True
         search_form = SearchForm(request.POST)
         if search_form.is_valid():
             data = search_form.cleaned_data
-            print(data)
 
             students = Student.objects.filter(deleted=0)
 
+            print(data['start'])
             if data['start']:
-                students = students.filter(protection_date=data['start'])
+                print(data['start'])
+                students = students.filter(protection_date__gte=data['start'])
 
             if data['end']:
-                students = students.filter(protection_date=data['end'])
+                students = students.filter(protection_date__lte=data['end'])
 
             if data['phrases'] != '':
                 phrases = re.split(r'\s*,\s*', data['phrases'])
