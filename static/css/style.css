@@ -2,16 +2,11 @@
     padding: 20px 0px;
 }
 body{
-<<<<<<< HEAD
     background:#2F0F6F !important;
     color: #fff;
     margin: 0px;
     padding: 0px;
     overflow-y: none;
-=======
-    background: url(../img/d7096ad35844972e015e865729d13235.png) !important;
-    color: #212121;
->>>>>>> db6952dbd302803a0f9e82d81da54fb249070d7e
 }
 .center{
     display: flex;
@@ -22,7 +17,6 @@ body{
 .table{
     overflow-x: auto;
     overflow-y: auto;
-<<<<<<< HEAD
 }
 
 
@@ -98,7 +92,6 @@ hr{
     z-index: -444;
     float: right;
 
-=======
 /*
     width: auto;
     max-width: 660px;
@@ -171,15 +164,28 @@ only screen and (max-width: 760px),
     bottom: 0px;
     right: -140px;
     z-index: 1;
->>>>>>> db6952dbd302803a0f9e82d81da54fb249070d7e
+
 }
 
 .logo img{
     width: 75px;
     height: 75px;
-<<<<<<< HEAD
 }
 input[type="file"]{
+    background: none;
+    border: none;
+    color: #fff;
+    margin-left: -10px;
+    outline: none;
+}
+input[type="file"]:hover{
+    background: none;
+    border: none;
+    color: #fff;
+    margin-left: -10px;
+    outline: none;
+}
+input[type="file"]:focus{
     background: none;
     border: none;
     color: #fff;
@@ -194,7 +200,6 @@ input[type="file"]{
 .zind{
     z-index: 99999;
 }
-=======
 }
 input[type="file"]{
     background: none;
@@ -214,7 +219,6 @@ input[type="file"]{
 .zind{
     z-index: 99999;
 }
->>>>>>> db6952dbd302803a0f9e82d81da54fb249070d7e
 
 @media (max-width: )
 {
