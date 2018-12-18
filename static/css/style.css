@@ -2,11 +2,16 @@
     padding: 20px 0px;
 }
 body{
+<<<<<<< HEAD
     background:#2F0F6F !important;
     color: #fff;
     margin: 0px;
     padding: 0px;
     overflow-y: none;
+=======
+    background: url(../img/d7096ad35844972e015e865729d13235.png) !important;
+    color: #212121;
+>>>>>>> db6952dbd302803a0f9e82d81da54fb249070d7e
 }
 .center{
     display: flex;
@@ -17,6 +22,7 @@ body{
 .table{
     overflow-x: auto;
     overflow-y: auto;
+<<<<<<< HEAD
 }
 
 
@@ -92,11 +98,86 @@ hr{
     z-index: -444;
     float: right;
 
+=======
+/*
+    width: auto;
+    max-width: 660px;
+*/
+}
+.table-hover{
+    cursor: pointer;
+}
+.house{
+    z-index: 1;
+    float: right;
+}
+.table td{
+    background: #fff;
+}
+.bg-light{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+table {text-align: center;}
+
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+ 
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none!important;
+        width: 100%!important; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data
+	*/
+
+}
+.house{
+    background-size: cover;
+    background-image: url('../img/house.png');
+    width: 600px;
+    height: 400px;
+    position: fixed;
+    bottom: 0px;
+    right: -140px;
+    z-index: 1;
+>>>>>>> db6952dbd302803a0f9e82d81da54fb249070d7e
 }
 
 .logo img{
     width: 75px;
     height: 75px;
+<<<<<<< HEAD
 }
 input[type="file"]{
     background: none;
@@ -113,6 +194,27 @@ input[type="file"]{
 .zind{
     z-index: 99999;
 }
+=======
+}
+input[type="file"]{
+    background: none;
+    border: none;
+    color: #fff;
+    margin-left: -10px;
+    outline: none;
+}
+.silver{
+    background: #404040;
+    color: #fff;
+}
+.search{
+    background: #fff;
+    
+}
+.zind{
+    z-index: 99999;
+}
+>>>>>>> db6952dbd302803a0f9e82d81da54fb249070d7e
 
 @media (max-width: )
 {
