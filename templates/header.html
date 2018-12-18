@@ -13,19 +13,25 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav text-right">
-
+      {% if request.user.is_staff %}
       <li class="nav-item">
         <a class="nav-link" href="/load">Завантажити Exel файл</a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="/admin">Панель адміністратора</a>
       </li>
+      {% endif %}
+      {% if request.user.is_staff %}
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/logout">Вихід</a>
+      </li>
+      {% else %}
       <li class="nav-item">
         <a class="nav-link" href="/admin">Вхід</a>
       </li>
-        <li class="nav-item">
-        <a class="nav-link" href="/logout">Вихід</a>
-      </li>
+      {% endif %}
+
 
 
     </ul>

@@ -55,13 +55,11 @@
                     <tr>
                         <th scope="col">Тема дисертації</th>
                         <th scope="col">П.І.П. здобувача</th>
-                        <th scope="col">Рік захисту</th>
                         <th scope="col">Спеціальність</th>
                         <th scope="col">Науковий керівник</th>
                         <th scope="col">Науковий ступінь, на здобуття якого захищена дисертація</th>
                         <th scope="col">Місце захисту</th>
                         <th scope="col">Дата захисту</th>
-                        <th scope="col">Спеціальність по якій відбувся захист</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,17 +67,15 @@
                     <tr>
                         <td>{{ student.theme }}</td>
                         <td>{{ student }}</td>
-                        {% if student.protection_date %}
+                        <td>{{ student.specialty }}</td>
+                        <td>{{ student.leader }}</td>
+                        <td>{{ student.degree }}</td>
+                        <td>{{ student.protection_place }}</td>
+                         {% if student.protection_date %}
                         <td>{{ student.protection_date }}</td>
                         {% else %}
                         <td></td>
                         {% endif %}
-                        <td>{{ student.specialty }}</td>
-                        <td>{{ student.leader }}</td>
-                        <td>{{ student.leader }}</td>
-                        <td>{{ student.leader }}</td>
-                        <td>{{ student.leader }}</td>
-                        <td></td>
                     </tr>
                     {% endfor %}
                 </tbody>
