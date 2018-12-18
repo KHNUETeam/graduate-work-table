@@ -100,6 +100,19 @@ class Cause(models.Model):
         return self.text
 
 
+class Degree(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(unique=True, max_length=100, blank=True)
+    deleted = models.IntegerField(blank=True)
+
+    class Meta:
+        managed = True
+        db_table = 'degree'
+
+    def __str__(self):
+        return self.name
+
+
 # Leaders table
 class Leader(models.Model):
     id = models.AutoField(primary_key=True)
@@ -124,6 +137,7 @@ class Student(models.Model):
     specialty = models.ForeignKey('Specialty', models.DO_NOTHING, db_column='specialty',
                                   related_name='specialty', null=True)
     form = models.ForeignKey('Form', models.DO_NOTHING, db_column='form', null=True)
+    degree = models.ForeignKey('Degree', models.DO_NOTHING, db_column='degree')
     base = models.ForeignKey('Base', models.DO_NOTHING, db_column='base', null=True)
     theme = models.TextField(blank=True, null=True)
     leader = models.ForeignKey('Leader', models.DO_NOTHING, blank=True, null=True)
