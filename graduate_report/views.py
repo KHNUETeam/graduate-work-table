@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from .controller import ViewController
 from .forms import ImportExelForm, SearchForm
 from .models import Student
@@ -7,7 +8,6 @@ import re
 
 # Create your views here.
 def main(request, preview=None):
-    students = Student.objects.filter(theme__icontains="структур")
 
     if request.method == 'POST':
         if 'search' in request.POST:
@@ -16,11 +16,9 @@ def main(request, preview=None):
         if search_form.is_valid():
             data = search_form.cleaned_data
 
-            students = Student.objects.filter(deleted=0)
-
-            print(data['start'])
+            students = Student.objects.filter(deleted=0).filter(~Q(theme=''))
+            
             if data['start']:
-                print(data['start'])
                 students = students.filter(protection_date__gte=data['start'])
 
             if data['end']:
@@ -32,7 +30,7 @@ def main(request, preview=None):
                     students = students.filter(theme__icontains=phrase)
     else:
         search_form = SearchForm()
-        students = Student.objects.filter(deleted=0)
+        students = Student.objects.filter(deleted=0).filter(~Q(theme=''))
 
     return render(request, 'graduate_report/main.html', locals())
 
