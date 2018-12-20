@@ -12,7 +12,7 @@
                     <div class="col-lg-9">
                         <div class="title__heder">
                             <h2>Eлектронний каталог</h2>
-                            <span>тем дисертацій яких захищених здобувачем ХНЕУ ім. С. Кузнеця</span>
+                            <span>тем дисертацій, захищених здобувачами ХНЕУ ім. С. Кузнеця</span>
                         </div>
                     </div>
                 </div>
@@ -20,14 +20,14 @@
                 <div class="form-group">
                     <div class="col-lg-12">
                        <div class="row">
-                        <label>Пошук за ключовими словами</label>
+                        <label>Пошук тем, за ключовими словами:</label>
                         {{ search_form.phrases }}
                     </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-lg-12">
-                        <label class="col col-form-label">За період:</label>
+                        <label class="col col-form-label">Захищених за період:</label>
                     </div>
 
 
@@ -35,15 +35,13 @@
                         {{ search_form.start }}
                     </div>
 
-                    <div class="col-lg-2">
-                    </div>
-                    <div class="col-lg-4">
+                
+                    <div class="col-lg-4 offset-lg-4">
                         {{ search_form.end }}
                     </div>
-                    <div class="col-lg-1">
-                    </div>
+
                 </div>
-                <input type="submit" name="search" class="btn" value="Шукати">
+                <input type="submit" name="search" class="btn" value="Пошук">
             </form>
         </div>
 
@@ -55,13 +53,11 @@
                     <tr>
                         <th scope="col">Тема дисертації</th>
                         <th scope="col">П.І.П. здобувача</th>
-                        <th scope="col">Рік захисту</th>
-                        <th scope="col">Спеціальність</th>
+                        <th scope="col">Спеціальність за якою захищено</th>
                         <th scope="col">Науковий керівник</th>
                         <th scope="col">Науковий ступінь, на здобуття якого захищена дисертація</th>
                         <th scope="col">Місце захисту</th>
                         <th scope="col">Дата захисту</th>
-                        <th scope="col">Спеціальність по якій відбувся захист</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,24 +65,22 @@
                     <tr>
                         <td>{{ student.theme }}</td>
                         <td>{{ student }}</td>
-                        {% if student.protection_date %}
+                        <td>{{ student.specialty }}</td>
+                        <td>{{ student.leader }}</td>
+                        <td>{{ student.degree }}</td>
+                        <td>{{ student.protection_place }}</td>
+                         {% if student.protection_date %}
                         <td>{{ student.protection_date }}</td>
                         {% else %}
                         <td></td>
                         {% endif %}
-                        <td>{{ student.specialty }}</td>
-                        <td>{{ student.leader }}</td>
-                        <td>{{ student.leader }}</td>
-                        <td>{{ student.leader }}</td>
-                        <td>{{ student.leader }}</td>
-                        <td></td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
             <div class="col-lg-12">
                 <div class="row">
-                    <button type="button" onclick="location.href='/preview'" class="btn">Друк</button>
+                    <button type="button" onclick="window.print()" class="btn">Друкувати</button>
                 </div>
             </div>
         </div>
