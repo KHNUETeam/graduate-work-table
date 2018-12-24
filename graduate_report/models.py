@@ -157,6 +157,9 @@ class Student(models.Model):
         db_table = 'student'
 
     def __str__(self):
-        return str.join(' ', (str(self.surname), str(self.name), str(self.patronymic)))
+        if self.patronymic:
+            return str.join(' ', (str(self.surname), str(self.name), str(self.patronymic)))
+        else:
+            return str.join(' ', (str(self.surname), str(self.name)))
 
 
