@@ -19,7 +19,10 @@ body{
     overflow-y: auto;
 }
 
-
+.row b{
+    background: #fff;
+    
+}
 
 table {text-align: center;}
 
