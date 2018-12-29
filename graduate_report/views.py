@@ -5,11 +5,13 @@ from .forms import ImportExelForm, SearchForm
 from .models import Student
 import time
 import re
+from .wordendslib import WORD_ENDS
 
 # Create your views here.
 def main(request, preview=None):
 
     if request.method == 'POST':
+        queries = []
         if 'search' in request.POST:
             search = True
         search_form = SearchForm(request.POST)
@@ -25,9 +27,21 @@ def main(request, preview=None):
                 students = students.filter(protection_date__lte=data['end'])
 
             if data['phrases'] != '':
-                phrases = re.split(r'\s*,\s*', data['phrases'])
+                phrases = re.split(r'\s', data['phrases'])
+                keys = []
+
                 for phrase in phrases:
-                    students = students.filter(theme__icontains=phrase)
+                    for word in WORD_ENDS:
+                        if len(phrase) - len(word) > 2:
+                            result = re.sub(r'{}'.format(word), '', phrase)
+                            if len(result) < len(phrase):
+                                keys.append(result)
+                                break
+
+                for key in keys:
+                    students = students.filter(theme__icontains=key)
+
+        students = students.order_by('protection_date', 'theme')
     else:
         search_form = SearchForm()
         students = Student.objects.filter(deleted=0).filter(~Q(theme=''))
