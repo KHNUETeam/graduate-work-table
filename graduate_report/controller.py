@@ -55,7 +55,6 @@ class ViewController:
             student = None
             
             if str(row[13]) != 'nan':
-                print('Theme = True')
                 if str(row[5]) != 'nan':
                     if str.lower(str(row[5])) == 'о':
                         row[5] = 'очна'
@@ -94,7 +93,6 @@ class ViewController:
                         department = Department.objects.filter(name=row[3])[0]
                 if row[5]:
                     if not Form.objects.filter(name=row[5]):
-                        print(row[5])
                         form = Form(
                             name=row[5],
                             deleted=0
@@ -116,7 +114,6 @@ class ViewController:
                         
                 if row[6]:
                     if not Base.objects.filter(name=row[6]):
-                        print(row[6])
                         base = Base(
                             name=row[6],
                             deleted=0
@@ -138,7 +135,6 @@ class ViewController:
 
                 if str(row[1]) != 'nan':
                     if not Cause.objects.filter(text=row[1]):
-                        print(row[1])
                         cause = Cause(
                             text=row[1],
                             deleted=0
@@ -162,7 +158,6 @@ class ViewController:
 
                 if str(row[10]) != 'nan':
                     if not Leader.objects.filter(fullname=row[10]):
-                        print(row[10])
                         leader = Leader(
                             fullname=row[10],
                             deleted=0
@@ -173,7 +168,6 @@ class ViewController:
 
                 if str(row[4]) != 'nan':
                     fullname = str(row[4]).split(' ')
-                    print(fullname)
                     try:
                         surname = fullname[0]
                     except:
