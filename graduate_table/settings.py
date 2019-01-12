@@ -19,10 +19,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '16cc%-z+h4cyr^(=t^ys+q7(nf9%@yhl+)qy36r0-3v4k_t$f2'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ENV = 'PRODUCTION'
+# ENV = ''
 
-ALLOWED_HOSTS = []
+# SECURITY WARNING: don't run with debug turned on in production!
+
+if ENV == 'PRODUCTION':
+    DEBUG = False
+    ALLOWED_HOSTS = ['212.111.199.238', 'topicthesis.eka.hneu.edu.ua']
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -49,21 +56,38 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'graduate_table.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
+if ENV == 'PRODUCTION':
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [os.path.join(BASE_DIR, 'templates')],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
         },
-    },
-]
+    ]
+else:
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': ['templates'],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                ],
+            },
+        },
+    ]
 
 WSGI_APPLICATION = 'graduate_table.wsgi.application'
 
@@ -71,16 +95,24 @@ WSGI_APPLICATION = 'graduate_table.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'graduatedb',
-        'USER': 'graduate_user',
-        'PASSWORD': 'graduate.pass0000',
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
+if ENV == 'PRODUCTION':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'topicthesisdb',
+            'USER': 'topicthesisuser',
+            'PASSWORD': 'uTBzTrkuLnDl',
+            'HOST': 'localhost',
+            'PORT': '3306'
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'topicthesisdb',
+        }
+    }
 
 #DATABASES = {
 #    'default': {
@@ -128,6 +160,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+if ENV == 'PRODUCTION':
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'static'),
 )
