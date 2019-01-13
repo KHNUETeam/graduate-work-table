@@ -14,6 +14,7 @@ body{
     align-items: center;
 
 }
+
 .table{
     overflow-x: auto;
     overflow-y: auto;
@@ -23,6 +24,12 @@ body{
     background: #fff;
     
 }
+.pagin{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 
 table {text-align: center;}
 
@@ -111,8 +118,8 @@ hr{
     background: #fff;
 }
 .bg-light{
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 0;
+    margin-right: 0;
 }
 table {text-align: center;}
 
