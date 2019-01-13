@@ -137,7 +137,7 @@ class Student(models.Model):
     specialty = models.ForeignKey('Specialty', models.DO_NOTHING, db_column='specialty',
                                   related_name='specialty', null=True)
     form = models.ForeignKey('Form', models.DO_NOTHING, db_column='form', null=True)
-    degree = models.ForeignKey('Degree', models.DO_NOTHING, db_column='degree')
+    degree = models.ForeignKey('Degree', models.DO_NOTHING, db_column='degree', null=True)
     base = models.ForeignKey('Base', models.DO_NOTHING, db_column='base', null=True)
     theme = models.TextField(blank=True, null=True)
     leader = models.ForeignKey('Leader', models.DO_NOTHING, blank=True, null=True)
@@ -157,6 +157,9 @@ class Student(models.Model):
         db_table = 'student'
 
     def __str__(self):
-        return str.join(' ', (self.surname, self.name, self.patronymic))
+        if self.patronymic:
+            return str.join(' ', (str(self.surname), str(self.name), str(self.patronymic)))
+        else:
+            return str.join(' ', (str(self.surname), str(self.name)))
 
 
