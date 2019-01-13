@@ -19,10 +19,10 @@
                 {% csrf_token %}
                 <div class="form-group">
                     <div class="col-lg-12">
-                       <div class="row">
-                        <label>Пошук тем, за ключовими словами:</label>
-                        {{ search_form.phrases }}
-                    </div>
+                        <div class="row">
+                            <label data-balloon="Ключові слова введіть через пробіл" data-balloon-pos="up">Пошук тем, за ключовими словами:</label>
+                            {{ search_form.phrases }}
+                        </div>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -35,7 +35,7 @@
                         {{ search_form.start }}
                     </div>
 
-                
+
                     <div class="col-lg-4 offset-lg-4">
                         {{ search_form.end }}
                     </div>
@@ -69,7 +69,7 @@
                         <td>{{ student.leader }}</td>
                         <td>{{ student.degree }}</td>
                         <td>{{ student.protection_place }}</td>
-                         {% if student.protection_date %}
+                        {% if student.protection_date %}
                         <td>{{ student.protection_date }}</td>
                         {% else %}
                         <td></td>
@@ -79,8 +79,29 @@
                 </tbody>
             </table>
             <div class="col-lg-12">
-                <div class="row">
-                    <button type="button" onclick="window.print()" class="btn">Друкувати</button>
+                <div class="row d-flex justify-content-center">
+                    <div class="btn-group printer justify-content-end mr-2 ">
+                        <button type="button" onclick="window.print()" class="btn  btn-secondary">Друкувати</button>
+                    </div>
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="pagin">
+                            <div class="btn-group mr-2" role="group" aria-label="First group">
+                                <a href="#" class="btn btn-secondary">1</a>
+                            </div>
+                            <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                <a href="#" class="btn btn-secondary">2</a>
+                                <a href="#" class="btn btn-secondary">3</a>
+                                <a href="#" class="btn btn-secondary">4</a>
+                                <a href="#" class="btn btn-secondary active">5</a>
+                                <a href="#" class="btn btn-secondary">6</a>
+                                <a href="#" class="btn btn-secondary">7</a>
+                                <a href="#" class="btn btn-secondary">8</a>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Third group">
+                                <a href="#" class="btn btn-secondary">10</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
