@@ -8,7 +8,7 @@ import re
 from .wordendslib import WORD_ENDS
 
 # Create your views here.
-def main(request, preview=None):
+def main(request, tab1=1, tab2=1, preview=None):
 
     if request.method == 'POST':
         queries = []
@@ -16,6 +16,8 @@ def main(request, preview=None):
             search = True
         search_form = SearchForm(request.POST)
         if search_form.is_valid():
+            start = int(tab1) * 10
+            end = int(start) + 10
             data = search_form.cleaned_data
 
             students = Student.objects.filter(deleted=0).filter(~Q(theme=''))
@@ -41,7 +43,7 @@ def main(request, preview=None):
                 for key in keys:
                     students = students.filter(theme__icontains=key)
 
-        students = students.order_by('protection_date', 'theme')
+        students = students.order_by('protection_date', 'theme')[start:end]
     else:
         search_form = SearchForm()
         students = Student.objects.filter(deleted=0).filter(~Q(theme=''))
