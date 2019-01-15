@@ -1,5 +1,10 @@
 {% extends 'base.html' %} {% block content %}
-<div class="row">
+{% load static %}
+
+<div class="row z-ind">
+       <div class="loader">
+        <img src="{% static 'img/spinning-circles.svg'%}" alt="" class="load">
+    </div>
     <div class="col-lg-12">
         <div class="col-lg-6">
             <form action="" method="post" class="zind form">
