@@ -6,6 +6,7 @@ from .models import Student
 import time
 import re
 from .wordendslib import WORD_ENDS
+from .parser.parser import Parser
 
 # Create your views here.
 def main(request, tab1=1, tab2=1, preview=None):
@@ -16,8 +17,8 @@ def main(request, tab1=1, tab2=1, preview=None):
             search = True
         search_form = SearchForm(request.POST)
         if search_form.is_valid():
-            start = int(tab1) * 10
-            end = int(start) + 10
+            start_tab1 = int(tab1) * 10
+            end_tab1 = int(start_tab1) + 10
             data = search_form.cleaned_data
 
             students = Student.objects.filter(deleted=0).filter(~Q(theme=''))
@@ -43,7 +44,15 @@ def main(request, tab1=1, tab2=1, preview=None):
                 for key in keys:
                     students = students.filter(theme__icontains=key)
 
-        students = students.order_by('protection_date', 'theme')[start:end]
+                request.session['isPost'] = True
+                #if data['phrases'] not in request.session:
+                    #collection = Parser(data['phrases']).collection
+                    #print(collection)
+                    #request.session.modified = True
+        #tab_data2 = request.session[data['phrases']]['tab2'][tab2]
+        count = students.order_by('protection_date', 'theme').count()
+        count = round(count / 10) + 1
+        students = students.order_by('protection_date', 'theme')[start_tab1:end_tab1]
     else:
         search_form = SearchForm()
         students = Student.objects.filter(deleted=0).filter(~Q(theme=''))
