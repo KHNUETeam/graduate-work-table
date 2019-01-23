@@ -17,8 +17,12 @@ def main(request, tab1=1, tab2=1, preview=None):
             search = True
         search_form = SearchForm(request.POST)
         if search_form.is_valid():
-            start_tab1 = int(tab1) * 10
-            end_tab1 = int(start_tab1) + 10
+            if tab1 == 1:
+                start_tab1 = 0
+                end_tab1 = int(start_tab1) + 20
+            else:
+                start_tab1 = int(tab1) * 10
+                end_tab1 = int(start_tab1) + 20
             data = search_form.cleaned_data
 
             students = Student.objects.filter(deleted=0).filter(~Q(theme=''))
@@ -51,7 +55,7 @@ def main(request, tab1=1, tab2=1, preview=None):
                     #request.session.modified = True
         #tab_data2 = request.session[data['phrases']]['tab2'][tab2]
         count = students.order_by('protection_date', 'theme').count()
-        count = round(count / 10) + 1
+        count = round(count / 20) + 1
         students = students.order_by('protection_date', 'theme')[start_tab1:end_tab1]
     else:
         search_form = SearchForm()
