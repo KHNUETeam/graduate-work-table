@@ -2,31 +2,25 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 from .controller import ViewController
 from .forms import ImportExelForm, SearchForm
-from .models import Student
+from .models import Student, VernLib
 import time
 import re
 from .wordendslib import WORD_ENDS
-from .parser.parser import Parser
+
 
 # Create your views here.
-def main(request, tab1=1, tab2=1, preview=None):
-
+def main(request, preview=None):
     if request.method == 'POST':
         queries = []
         if 'search' in request.POST:
             search = True
         search_form = SearchForm(request.POST)
         if search_form.is_valid():
-            if tab1 == 1:
-                start_tab1 = 0
-                end_tab1 = int(start_tab1) + 20
-            else:
-                start_tab1 = int(tab1) * 10
-                end_tab1 = int(start_tab1) + 20
             data = search_form.cleaned_data
 
             students = Student.objects.filter(deleted=0).filter(~Q(theme=''))
-            
+            vern_lib = VernLib.objects.filter(~Q(theme=''))
+
             if data['start']:
                 students = students.filter(protection_date__gte=data['start'])
 
@@ -47,19 +41,12 @@ def main(request, tab1=1, tab2=1, preview=None):
 
                 for key in keys:
                     students = students.filter(theme__icontains=key)
+                    vern_lib = vern_lib.filter(theme_icontains=key)
 
-                request.session['isPost'] = True
-                #if data['phrases'] not in request.session:
-                    #collection = Parser(data['phrases']).collection
-                    #print(collection)
-                    #request.session.modified = True
-        #tab_data2 = request.session[data['phrases']]['tab2'][tab2]
-        count = students.order_by('protection_date', 'theme').count()
-        count = round(count / 20) + 1
-        students = students.order_by('protection_date', 'theme')[start_tab1:end_tab1]
+        students = students.order_by('protection_date', 'theme')
+        vern_lib = vern_lib.order_by('theme')
     else:
         search_form = SearchForm()
-        students = Student.objects.filter(deleted=0).filter(~Q(theme=''))
 
     return render(request, 'graduate_report/main.html', locals())
 

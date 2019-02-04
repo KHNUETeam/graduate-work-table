@@ -163,3 +163,16 @@ class Student(models.Model):
             return str.join(' ', (str(self.surname), str(self.name)))
 
 
+# Library of Vernadsky
+
+class VernLib(models.Model):
+    id = models.AutoField(primary_key=True)
+    theme = models.TextField(blank=True, null=True)
+    fullname = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        managed = True
+        db_table = 'vern_lib'
+
+    def  __str__(self):
+        return  self.fullname

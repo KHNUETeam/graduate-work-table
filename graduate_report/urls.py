@@ -18,6 +18,5 @@ from django.urls import path, re_path
 
 urlpatterns = [
     path('', main),
-    re_path('t1=(\d+)&t2=(\d+)', main),
     path('load/', load)
 ]
