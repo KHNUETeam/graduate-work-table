@@ -56,7 +56,7 @@ while page < count:
     i = 8
     while True:
         try:
-            author = driver.find_element_by_css_selector(author_selector.format(i)).text
+            author = driver.find_element_by_css_selector(author_selector.format(i))
             theme = driver.find_element_by_css_selector(theme_selector.format(i)).text
 
             try:
@@ -66,7 +66,7 @@ while page < count:
                 if len(cursor.fetchall()) == 0:
                     cursor.close()
                     cursor = connection.cursor()
-                    cursor.execute('INSERT INTO `vern_lib` (`theme`, `author`) VALUES (\'{0}\',\'{1}\')'.format(theme, author))
+                    cursor.execute('INSERT INTO `vern_lib` (`theme`, `author`, `href`) VALUES (\'{0}\',\'{1}\', \'{2}\')'.format(theme, author.text, author.get_attribute('href')))
                     connection.commit()
                     cursor.close()
             except:
