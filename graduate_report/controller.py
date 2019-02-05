@@ -73,7 +73,6 @@ class ViewController:
 
                 if str(row[2]) != 'nan':
                     if not Faculty.objects.filter(name=row[2]):
-                        print(row[2])
                         faculty = Faculty(
                             name=row[2],
                             deleted=0
@@ -83,7 +82,6 @@ class ViewController:
                         faculty = Faculty.objects.filter(name=row[2])[0]
                 if str(row[3]) != 'nan':
                     if not Department.objects.filter(name=row[3]):
-                        print(row[3])
                         department = Department(
                             name=row[3],
                             deleted=0
@@ -103,7 +101,6 @@ class ViewController:
                         
                 if str(row[7]) != 'nan':
                     if not Specialty.objects.filter(code=row[7]):
-                        print(row[7])
                         specialty = Specialty(
                             code=row[7],
                             deleted=0
@@ -124,7 +121,6 @@ class ViewController:
                         
                 if str(row[12]) != 'nan':
                     if not Place.objects.filter(name=row[12]):
-                        print(row[12])
                         place = Place(
                             name=row[12],
                             deleted=0

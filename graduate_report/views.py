@@ -41,7 +41,7 @@ def main(request, preview=None):
 
                 for key in keys:
                     students = students.filter(theme__icontains=key)
-                    vern_lib = vern_lib.filter(theme_icontains=key)
+                    vern_lib = vern_lib.filter(theme__icontains=key)
 
         students = students.order_by('protection_date', 'theme')
         vern_lib = vern_lib.order_by('theme')
