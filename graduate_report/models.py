@@ -169,6 +169,7 @@ class VernLib(models.Model):
     id = models.AutoField(primary_key=True)
     theme = models.TextField(blank=True, null=True)
     fullname = models.CharField(max_length=255, blank=True)
+    href = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = True
