@@ -3,12 +3,17 @@ from selenium.webdriver.support.ui import Select
 import time
 import MySQLdb
 import sqlite3
+import sys
+
+# У$ - Economics
+# С$ - Sociology
+# Ч$ - CultureС$
 
 ENV = 'PRODUCTION'
 # ENV = ''
 
 if ENV == 'PRODUCTION':
-    from pymyvirtual import Display
+    from pyvirtualdisplay import Display
     options = webdriver.ChromeOptions()
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--no-sandbox')
@@ -51,13 +56,13 @@ else:
     connection = sqlite3.connect(r'C:\Users\Mr_DarkWolf\Desktop\graduate-work-table\topicthesisdb')
 
 page = 1
-while page < count:
+while page <= count:
     page += 20
     i = 8
     while True:
         try:
             author = driver.find_element_by_css_selector(author_selector.format(i))
-            theme = driver.find_element_by_css_selector(theme_selector.format(i)).text
+            theme = driver.find_element_by_css_selector(theme_selector.format(i)).text.replace("'", "`")
 
             try:
                 cursor = connection.cursor()
@@ -66,7 +71,7 @@ while page < count:
                 if len(cursor.fetchall()) == 0:
                     cursor.close()
                     cursor = connection.cursor()
-                    cursor.execute('INSERT INTO `vern_lib` (`theme`, `author`, `href`) VALUES (\'{0}\',\'{1}\', \'{2}\')'.format(theme, author.text, author.get_attribute('href')))
+                    cursor.execute('INSERT INTO `vern_lib` (`theme`, `author`, `href`) VALUES (\'{0}\',\'{1}\', \'{2}\')'.format(theme, author.text.replace("'", "`"), author.get_attribute('href')))
                     connection.commit()
                     cursor.close()
             except:
