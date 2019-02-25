@@ -34,9 +34,8 @@ def main(request, preview=None):
                 for phrase in phrases:
                     for word in WORD_ENDS:
                         if len(phrase) - len(word) > 2:
-                            result = re.sub(r'{}'.format(word), '', phrase)
-                            if len(result) < len(phrase):
-                                keys.append(result)
+                            if word == phrase[len(phrase) - len(word):]:
+                                keys.append(phrase[:len(phrase) - len(word)])
                                 break
 
                 for key in keys:
